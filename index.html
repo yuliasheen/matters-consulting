@@ -417,6 +417,130 @@ footer { background: var(--ink); color: rgba(255,255,255,0.4); padding: 4rem 4re
   #cta { padding: 5rem 1.25rem; }
   .quiz-band { padding: 3rem 1.25rem; }
 }
+
+/* ===================== WOW EFFECTS ===================== */
+
+/* SCROLL PROGRESS BAR */
+#scroll-bar { position:fixed; top:0; left:0; height:2px; background:linear-gradient(90deg,var(--purple),var(--purple-light)); width:0%; z-index:10000; pointer-events:none; }
+
+/* PAGE LOADER */
+#page-loader { position:fixed; inset:0; z-index:9999; background:var(--ink); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:1.5rem; }
+#page-loader.done { opacity:0; transition:opacity 0.7s cubic-bezier(0.16,1,0.3,1) 0.15s; pointer-events:none; }
+.loader-word { overflow:hidden; }
+.loader-wordmark { font-family:var(--serif); font-size:clamp(3.5rem,9vw,9rem); color:#fff; letter-spacing:0.05em; display:block; transform:translateY(110%); animation:loader-up 0.9s cubic-bezier(0.16,1,0.3,1) 0.1s forwards; }
+.loader-sub { font-family:var(--mono); font-size:0.6rem; letter-spacing:0.3em; text-transform:uppercase; color:rgba(255,255,255,0); animation:loader-fade 0.6s ease 0.85s forwards; }
+.loader-bar-wrap { width:min(320px,60vw); height:1px; background:rgba(255,255,255,0.1); overflow:hidden; }
+.loader-bar-fill { height:100%; background:var(--purple-light); width:0; animation:loader-fill 0.8s cubic-bezier(0.16,1,0.3,1) 0.3s forwards; }
+@keyframes loader-up { to { transform:translateY(0); } }
+@keyframes loader-fade { to { color:rgba(255,255,255,0.35); } }
+@keyframes loader-fill { to { width:100%; } }
+
+/* CUSTOM CURSOR */
+#cursor-dot, #cursor-ring { position:fixed; border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); top:0; left:0; }
+#cursor-dot { width:7px; height:7px; background:var(--purple); transition:width 0.2s, height 0.2s, background 0.2s; }
+#cursor-ring { width:38px; height:38px; border:1.5px solid rgba(74,63,159,0.45); transition:width 0.35s cubic-bezier(0.16,1,0.3,1), height 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.35s; }
+body.cursor-hover #cursor-dot { width:12px; height:12px; background:var(--purple-mid); }
+body.cursor-hover #cursor-ring { width:58px; height:58px; border-color:rgba(74,63,159,0.65); }
+body.cursor-click #cursor-dot { width:5px; height:5px; }
+body.cursor-click #cursor-ring { width:30px; height:30px; }
+@media (hover:none) { #cursor-dot, #cursor-ring { display:none !important; } }
+
+/* MARQUEE TEXT BAND */
+.marquee-band { overflow:hidden; padding:2.75rem 0; background:var(--ink); cursor:default; }
+.marquee-inner { display:flex; white-space:nowrap; animation:marquee-go 30s linear infinite; width:max-content; }
+.marquee-band:hover .marquee-inner { animation-play-state:paused; }
+.marquee-item { font-family:var(--serif); font-size:clamp(2rem,4vw,4.5rem); font-weight:700; font-style:italic; color:transparent; -webkit-text-stroke:1px rgba(255,255,255,0.2); padding-right:1.5rem; transition:color 0.3s, -webkit-text-stroke 0.3s; flex-shrink:0; }
+.marquee-item:hover { color:rgba(255,255,255,0.85); -webkit-text-stroke:1px transparent; }
+.marquee-sep { color:var(--purple-light); padding:0 1.5rem; display:inline-flex; align-items:center; font-size:1.2rem; flex-shrink:0; opacity:0.7; }
+@keyframes marquee-go { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+
+/* GHOST PARALLAX TEXT */
+.ghost-text-wrap { position:relative; overflow:hidden; }
+.ghost-text { position:absolute; font-family:var(--serif); font-weight:700; pointer-events:none; white-space:nowrap; z-index:0; letter-spacing:-0.02em; color:transparent; -webkit-text-stroke:1px rgba(74,63,159,0.07); user-select:none; }
+.ghost-text-wrap > * { position:relative; z-index:1; }
+
+/* ENHANCED REVEAL VARIANTS */
+.reveal-up { opacity:0; transform:translateY(28px); transition:opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1); }
+.reveal-up.up { opacity:1; transform:translateY(0); }
+.reveal-scale { opacity:0; transform:scale(0.95) translateY(20px); transition:opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1); }
+.reveal-scale.up { opacity:1; transform:scale(1) translateY(0); }
+.reveal-left { opacity:0; transform:translateX(-32px); transition:opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1); }
+.reveal-left.up { opacity:1; transform:translateX(0); }
+.reveal-right { opacity:0; transform:translateX(32px); transition:opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1); }
+.reveal-right.up { opacity:1; transform:translateX(0); }
+
+/* MAGNETIC BUTTONS */
+.btn-solid, .btn-light, .nav-book { will-change:transform; }
+
+/* COUNTER NUMBERS */
+.count-num { display:inline; }
+
+/* CARD HOVER GLOW */
+.for-you-card { transition:background 0.3s, box-shadow 0.3s, transform 0.3s cubic-bezier(0.16,1,0.3,1) !important; }
+.for-you-card:hover { transform:translateY(-4px) !important; }
+.service-row { transition:background 0.25s, border-color 0.25s, transform 0.25s cubic-bezier(0.16,1,0.3,1) !important; }
+.service-row:hover { transform:translateX(4px) !important; }
+
+/* PROCESS STEP ENHANCED */
+.step-dot { transition:background 0.25s, border-color 0.25s, transform 0.25s cubic-bezier(0.16,1,0.3,1) !important; }
+.process-step:hover .step-dot { transform:scale(1.15) !important; }
+
+/* TESTIMONIAL HOVER */
+.t-text { transition:color 0.3s; }
+
+/* ── RADAR TOOLTIP ── */
+.radar-tip {
+  position: fixed; z-index: 9990; pointer-events: none;
+  background: var(--ink); color: #fff;
+  font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.08em;
+  padding: 0.55rem 0.9rem; border-radius: 8px; white-space: nowrap;
+  display: flex; align-items: center; gap: 0.5rem;
+  opacity: 0; transform: translateY(6px) scale(0.96);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+}
+.radar-tip.show { opacity: 1; transform: translateY(0) scale(1); }
+.radar-tip-score { color: var(--purple-light); font-weight: 600; }
+.radar-tip-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--purple-light); flex-shrink: 0; }
+
+/* ── RADAR DOT INTERACTIVE ── */
+.hero-r-dot, .data-r-dot {
+  cursor: crosshair; transition: opacity 0.35s ease, transform 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+.hero-r-dot { transition: r 0.2s ease, filter 0.2s ease, opacity 0.35s ease, transform 0.5s cubic-bezier(0.16,1,0.3,1); }
+
+/* ── SCORE CARD INTERACTIVE HIGHLIGHT ── */
+.score-card { transition: background 0.25s, border-color 0.25s, box-shadow 0.25s, transform 0.25s cubic-bezier(0.16,1,0.3,1) !important; cursor: crosshair; }
+.score-card.eq-active {
+  background: rgba(74,63,159,0.12) !important;
+  border-color: rgba(74,63,159,0.35) !important;
+  box-shadow: 0 4px 24px rgba(74,63,159,0.18) !important;
+  transform: translateX(4px) !important;
+}
+
+/* ── RADAR BREATHING ── */
+@keyframes radar-breathe { 0%,100% { opacity:.75 } 50% { opacity:1 } }
+#hero-radar-poly.settled, #data-radar-poly.settled { animation: radar-breathe 4s ease-in-out infinite; }
+
+/* ── RADAR DOT PULSE RING ── */
+@keyframes dot-pulse {
+  0% { r: 3; opacity: 0.6; }
+  50% { r: 6; opacity: 0; }
+  100% { r: 3; opacity: 0; }
+}
+.dot-pulse-ring { animation: dot-pulse 2.5s ease-out infinite; }
+
+/* ── CHART & RADAR ANIMATION STATES ── */
+.hero-r-dot, .data-r-dot, .data-dot {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0);
+  transition: opacity 0.35s ease, transform 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+.hero-r-dot.on, .data-r-dot.on, .data-dot.on { opacity:1; transform:scale(1); }
+#data-line-poly { stroke-dashoffset: 9999; stroke-dasharray: 9999; transition: stroke-dashoffset 2s cubic-bezier(0.16,1,0.3,1) 0.1s; }
+#data-line-poly.on { stroke-dashoffset: 0; }
 </style>
 <template id="__bundler_thumbnail" data-bg-color="#1a1825">
   <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
@@ -436,6 +560,20 @@ footer { background: var(--ink); color: rgba(255,255,255,0.4); padding: 4rem 4re
 </template>
 </head>
 <body>
+
+<!-- SCROLL PROGRESS -->
+<div id="scroll-bar" aria-hidden="true"></div>
+
+<!-- PAGE LOADER -->
+<div id="page-loader" aria-hidden="true">
+  <div class="loader-word"><span class="loader-wordmark">matters</span></div>
+  <div class="loader-bar-wrap"><div class="loader-bar-fill"></div></div>
+  <div class="loader-sub">The Leadership Intelligence Practice</div>
+</div>
+
+<!-- CUSTOM CURSOR -->
+<div id="cursor-dot" aria-hidden="true"></div>
+<div id="cursor-ring" aria-hidden="true"></div>
 
 <!-- NAV -->
 <nav id="nav" style="font-family: Manrope">
@@ -541,16 +679,16 @@ footer { background: var(--ink); color: rgba(255,255,255,0.4); padding: 4rem 4re
           <line x1="20" y1="100" x2="180" y2="100" stroke="rgba(74,63,159,0.08)" stroke-width="0.5"/>
           <line x1="43" y1="43" x2="157" y2="157" stroke="rgba(74,63,159,0.07)" stroke-width="0.5"/>
           <line x1="157" y1="43" x2="43" y2="157" stroke="rgba(74,63,159,0.07)" stroke-width="0.5"/>
-          <polygon points="100,28 152,52 170,108 148,160 100,174 52,160 30,108 48,52" fill="url(#radarFill)" stroke="rgba(74,63,159,0.55)" stroke-width="1.5"/>
+          <polygon id="hero-radar-poly" points="100,100 100,100 100,100 100,100 100,100 100,100 100,100 100,100" fill="url(#radarFill)" stroke="rgba(74,63,159,0.55)" stroke-width="1.5"/>
           <polygon points="100,55 132,70 142,100 128,132 100,140 72,132 58,100 68,70" fill="none" stroke="rgba(74,63,159,0.2)" stroke-width="0.5" stroke-dasharray="3 2"/>
-          <circle cx="100" cy="28" r="3" fill="#4a3f9f"/>
-          <circle cx="152" cy="52" r="3" fill="#4a3f9f"/>
-          <circle cx="170" cy="108" r="3" fill="#4a3f9f"/>
-          <circle cx="148" cy="160" r="3" fill="#4a3f9f"/>
-          <circle cx="100" cy="174" r="3" fill="#4a3f9f"/>
-          <circle cx="52" cy="160" r="3" fill="#4a3f9f"/>
-          <circle cx="30" cy="108" r="3" fill="#4a3f9f"/>
-          <circle cx="48" cy="52" r="3" fill="#4a3f9f"/>
+          <circle class="hero-r-dot" cx="100" cy="28" r="3" fill="#4a3f9f"/>
+          <circle class="hero-r-dot" cx="152" cy="52" r="3" fill="#4a3f9f"/>
+          <circle class="hero-r-dot" cx="170" cy="108" r="3" fill="#4a3f9f"/>
+          <circle class="hero-r-dot" cx="148" cy="160" r="3" fill="#4a3f9f"/>
+          <circle class="hero-r-dot" cx="100" cy="174" r="3" fill="#4a3f9f"/>
+          <circle class="hero-r-dot" cx="52" cy="160" r="3" fill="#4a3f9f"/>
+          <circle class="hero-r-dot" cx="30" cy="108" r="3" fill="#4a3f9f"/>
+          <circle class="hero-r-dot" cx="48" cy="52" r="3" fill="#4a3f9f"/>
           <text x="100" y="96" text-anchor="middle" font-family="'Century Old Style Std','Playfair Display',serif" font-size="13" fill="rgba(74,63,159,0.7)" font-weight="700">Your</text>
           <text x="100" y="114" text-anchor="middle" font-family="'Century Old Style Std','Playfair Display',serif" font-size="13" fill="rgba(74,63,159,0.7)" font-style="italic">Profile</text>
         </svg>
@@ -585,15 +723,15 @@ footer { background: var(--ink); color: rgba(255,255,255,0.4); padding: 4rem 4re
 <!-- STATS BANNER -->
 <div class="stats-banner">
   <div class="stat-band reveal">
-    <div class="stat-band-num">700+</div>
+    <div class="stat-band-num"><span class="count-num" data-target="700" data-suffix="+">700+</span></div>
     <div class="stat-band-label">Hours of coaching delivered</div>
   </div>
   <div class="stat-band reveal reveal-delay-1">
-    <div class="stat-band-num">8</div>
+    <div class="stat-band-num"><span class="count-num" data-target="8" data-suffix="">8</span></div>
     <div class="stat-band-label">Industries worked across</div>
   </div>
   <div class="stat-band reveal reveal-delay-2">
-    <div class="stat-band-num">90%</div>
+    <div class="stat-band-num"><span class="count-num" data-target="90" data-suffix="%">90%</span></div>
     <div class="stat-band-label">Of top executives score high in EQ — Harvard Business Review</div>
   </div>
 </div>
@@ -682,14 +820,14 @@ footer { background: var(--ink); color: rgba(255,255,255,0.4); padding: 4rem 4re
       <line x1="0" y1="80" x2="400" y2="80" stroke="var(--rule)" stroke-width="0.5"/>
       <line x1="0" y1="100" x2="400" y2="100" stroke="var(--rule)" stroke-width="0.5"/>
       <polyline points="0,80 80,76 160,70 240,65 320,59 400,52" fill="none" stroke="rgba(74,63,159,0.2)" stroke-width="1.5" stroke-dasharray="4 3"/>
-      <polygon points="0,80 80,68 160,54 240,40 320,28 400,20 400,100 0,100" fill="rgba(74,63,159,0.05)"/>
-      <polyline points="0,80 80,68 160,54 240,40 320,28 400,20" fill="none" stroke="var(--purple)" stroke-width="2"/>
-      <circle cx="0" cy="80" r="3.5" fill="var(--purple)" opacity="0.5"/>
-      <circle cx="80" cy="68" r="3.5" fill="var(--purple)"/>
-      <circle cx="160" cy="54" r="3.5" fill="var(--purple)"/>
-      <circle cx="240" cy="40" r="3.5" fill="var(--purple)"/>
-      <circle cx="320" cy="28" r="3.5" fill="var(--purple)"/>
-      <circle cx="400" cy="20" r="3.5" fill="var(--purple)"/>
+      <polygon id="data-area-poly" points="0,80 80,68 160,54 240,40 320,28 400,20 400,100 0,100" fill="rgba(74,63,159,0.05)" style="clip-path:inset(0 100% 0 0);transition:clip-path 2s cubic-bezier(0.16,1,0.3,1) 0.05s"/>
+      <polyline id="data-line-poly" points="0,80 80,68 160,54 240,40 320,28 400,20" fill="none" stroke="var(--purple)" stroke-width="2"/>
+      <circle class="data-dot" cx="0" cy="80" r="3.5" fill="var(--purple)" opacity="0.5"/>
+      <circle class="data-dot" cx="80" cy="68" r="3.5" fill="var(--purple)"/>
+      <circle class="data-dot" cx="160" cy="54" r="3.5" fill="var(--purple)"/>
+      <circle class="data-dot" cx="240" cy="40" r="3.5" fill="var(--purple)"/>
+      <circle class="data-dot" cx="320" cy="28" r="3.5" fill="var(--purple)"/>
+      <circle class="data-dot" cx="400" cy="20" r="3.5" fill="var(--purple)"/>
       <text x="0" y="118" font-family="'DM Mono',monospace" font-size="8" fill="var(--ink-faint)" letter-spacing="1">Baseline</text>
       <text x="400" y="118" font-family="'DM Mono',monospace" font-size="8" fill="var(--ink-faint)" letter-spacing="1" text-anchor="end">Month 6</text>
       <line x1="0" y1="134" x2="18" y2="134" stroke="var(--purple)" stroke-width="2"/>
@@ -719,19 +857,19 @@ footer { background: var(--ink); color: rgba(255,255,255,0.4); padding: 4rem 4re
         <line x1="218" y1="62" x2="62" y2="218" stroke="rgba(74,63,159,0.07)" stroke-width="0.5"/>
         <line x1="85" y1="36" x2="195" y2="244" stroke="rgba(74,63,159,0.05)" stroke-width="0.5"/>
         <line x1="195" y1="36" x2="85" y2="244" stroke="rgba(74,63,159,0.05)" stroke-width="0.5"/>
-        <polygon points="140,44 195,58 230,100 235,155 210,210 165,238 115,238 68,208 46,155 52,100 84,58" fill="url(#rf2)" stroke="rgba(74,63,159,0.5)" stroke-width="1.5"/>
+        <polygon id="data-radar-poly" points="140,140 140,140 140,140 140,140 140,140 140,140 140,140 140,140 140,140 140,140 140,140" fill="url(#rf2)" stroke="rgba(74,63,159,0.5)" stroke-width="1.5"/>
         <polygon points="140,75 183,88 208,122 212,158 192,195 160,212 120,212 88,194 68,158 73,122 97,88" fill="none" stroke="rgba(74,63,159,0.18)" stroke-width="0.5" stroke-dasharray="3 2"/>
-        <circle cx="140" cy="44" r="3" fill="#4a3f9f"/>
-        <circle cx="195" cy="58" r="3" fill="#4a3f9f"/>
-        <circle cx="230" cy="100" r="3" fill="#4a3f9f"/>
-        <circle cx="235" cy="155" r="3" fill="#4a3f9f"/>
-        <circle cx="210" cy="210" r="3" fill="#4a3f9f"/>
-        <circle cx="165" cy="238" r="3" fill="#4a3f9f"/>
-        <circle cx="115" cy="238" r="3" fill="#4a3f9f"/>
-        <circle cx="68" cy="208" r="3" fill="#4a3f9f"/>
-        <circle cx="46" cy="155" r="3" fill="#4a3f9f"/>
-        <circle cx="52" cy="100" r="3" fill="#4a3f9f"/>
-        <circle cx="84" cy="58" r="3" fill="#4a3f9f"/>
+        <circle class="data-r-dot" cx="140" cy="44" r="3" fill="#4a3f9f"/>
+        <circle class="data-r-dot" cx="195" cy="58" r="3" fill="#4a3f9f"/>
+        <circle class="data-r-dot" cx="230" cy="100" r="3" fill="#4a3f9f"/>
+        <circle class="data-r-dot" cx="235" cy="155" r="3" fill="#4a3f9f"/>
+        <circle class="data-r-dot" cx="210" cy="210" r="3" fill="#4a3f9f"/>
+        <circle class="data-r-dot" cx="165" cy="238" r="3" fill="#4a3f9f"/>
+        <circle class="data-r-dot" cx="115" cy="238" r="3" fill="#4a3f9f"/>
+        <circle class="data-r-dot" cx="68" cy="208" r="3" fill="#4a3f9f"/>
+        <circle class="data-r-dot" cx="46" cy="155" r="3" fill="#4a3f9f"/>
+        <circle class="data-r-dot" cx="52" cy="100" r="3" fill="#4a3f9f"/>
+        <circle class="data-r-dot" cx="84" cy="58" r="3" fill="#4a3f9f"/>
         <text x="140" y="135" text-anchor="middle" font-family="'Century Old Style Std','Playfair Display',serif" font-size="16" fill="rgba(74,63,159,0.7)" font-weight="700">Your</text>
         <text x="140" y="155" text-anchor="middle" font-family="'Century Old Style Std','Playfair Display',serif" font-size="15" fill="rgba(74,63,159,0.7)" font-style="italic">profile</text>
       </svg>
@@ -938,19 +1076,19 @@ footer { background: var(--ink); color: rgba(255,255,255,0.4); padding: 4rem 4re
   <div class="section-label reveal" style="justify-content:center;margin-bottom:3rem">By the numbers</div>
   <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem" class="reveal">
     <div style="background:var(--white);border:1px solid var(--rule);border-radius:20px;padding:2.5rem 2rem;text-align:center;transition:box-shadow 0.3s" onmouseover="this.style.boxShadow='0 8px 40px rgba(74,63,159,0.1)'" onmouseout="this.style.boxShadow='none'">
-      <div style="font-family:var(--serif);font-size:3rem;font-weight:700;color:var(--purple);line-height:1;margin-bottom:0.5rem">700+</div>
+      <div style="font-family:var(--serif);font-size:3rem;font-weight:700;color:var(--purple);line-height:1;margin-bottom:0.5rem"><span class="count-num" data-target="700" data-suffix="+">700+</span></div>
       <div style="font-family:var(--mono);font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-soft);line-height:1.6">Hours of 1:1 and group<br>coaching delivered</div>
     </div>
-    <div style="background:var(--white);border:1px solid var(--rule);border-radius:20px;padding:2.5rem 2rem;text-align:center;transition:box-shadow 0.3s" onmouseover="this.style.boxShadow='0 8px 40px rgba(74,63,159,0.1)'" onmouseout="this.style.boxShadow='none'">
-      <div style="font-family:var(--serif);font-size:3rem;font-weight:700;color:var(--purple);line-height:1;margin-bottom:0.5rem">12 yrs</div>
+    <div style="background:var(--white);border:1px solid var(--rule);border-radius:20px;padding:2.5rem 2rem;text-align:center;transition:box-shadow 0.3s,transform 0.3s cubic-bezier(0.16,1,0.3,1)" onmouseover="this.style.boxShadow='0 8px 40px rgba(74,63,159,0.1)';this.style.transform='translateY(-4px)'" onmouseout="this.style.boxShadow='none';this.style.transform=''">
+      <div style="font-family:var(--serif);font-size:3rem;font-weight:700;color:var(--purple);line-height:1;margin-bottom:0.5rem"><span class="count-num" data-target="12" data-suffix=" yrs">12 yrs</span></div>
       <div style="font-family:var(--mono);font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-soft);line-height:1.6">Working with leaders<br>across the UAE</div>
     </div>
-    <div style="background:var(--white);border:1px solid var(--rule);border-radius:20px;padding:2.5rem 2rem;text-align:center;transition:box-shadow 0.3s" onmouseover="this.style.boxShadow='0 8px 40px rgba(74,63,159,0.1)'" onmouseout="this.style.boxShadow='none'">
-      <div style="font-family:var(--serif);font-size:3rem;font-weight:700;color:var(--purple);line-height:1;margin-bottom:0.5rem">15</div>
+    <div style="background:var(--white);border:1px solid var(--rule);border-radius:20px;padding:2.5rem 2rem;text-align:center;transition:box-shadow 0.3s,transform 0.3s cubic-bezier(0.16,1,0.3,1)" onmouseover="this.style.boxShadow='0 8px 40px rgba(74,63,159,0.1)';this.style.transform='translateY(-4px)'" onmouseout="this.style.boxShadow='none';this.style.transform=''">
+      <div style="font-family:var(--serif);font-size:3rem;font-weight:700;color:var(--purple);line-height:1;margin-bottom:0.5rem"><span class="count-num" data-target="15" data-suffix="">15</span></div>
       <div style="font-family:var(--mono);font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-soft);line-height:1.6">EQ competencies measured<br>in every assessment</div>
     </div>
-    <div style="background:var(--white);border:1px solid var(--rule);border-radius:20px;padding:2.5rem 2rem;text-align:center;transition:box-shadow 0.3s" onmouseover="this.style.boxShadow='0 8px 40px rgba(74,63,159,0.1)'" onmouseout="this.style.boxShadow='none'">
-      <div style="font-family:var(--serif);font-size:3rem;font-weight:700;color:var(--purple);line-height:1;margin-bottom:0.5rem">90%</div>
+    <div style="background:var(--white);border:1px solid var(--rule);border-radius:20px;padding:2.5rem 2rem;text-align:center;transition:box-shadow 0.3s,transform 0.3s cubic-bezier(0.16,1,0.3,1)" onmouseover="this.style.boxShadow='0 8px 40px rgba(74,63,159,0.1)';this.style.transform='translateY(-4px)'" onmouseout="this.style.boxShadow='none';this.style.transform=''">
+      <div style="font-family:var(--serif);font-size:3rem;font-weight:700;color:var(--purple);line-height:1;margin-bottom:0.5rem"><span class="count-num" data-target="90" data-suffix="%">90%</span></div>
       <div style="font-family:var(--mono);font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-soft);line-height:1.6">Of top executives score<br>high in EQ — HBR</div>
     </div>
   </div>
@@ -1082,18 +1220,111 @@ footer { background: var(--ink); color: rgba(255,255,255,0.4); padding: 4rem 4re
 </footer>
 
 <script>
-// Nav scroll
+/* ── PAGE LOADER ── */
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const loader = document.getElementById('page-loader');
+    loader.classList.add('done');
+    setTimeout(() => loader.remove(), 1000);
+  }, 900);
+});
+
+/* ── SCROLL PROGRESS BAR ── */
+const scrollBar = document.getElementById('scroll-bar');
+function updateScrollBar() {
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  scrollBar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+}
+window.addEventListener('scroll', updateScrollBar, { passive: true });
+
+/* ── NAV SCROLL ── */
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), { passive: true });
 
-// Reveal on scroll
-const revealEls = document.querySelectorAll('.reveal');
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('up'); io.unobserve(e.target); } });
-}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-revealEls.forEach(el => io.observe(el));
+/* ── CUSTOM CURSOR ── */
+const dot = document.getElementById('cursor-dot');
+const ring = document.getElementById('cursor-ring');
+let mx = -200, my = -200, rx = -200, ry = -200, rafId;
 
-// Smooth scroll
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.left = mx + 'px'; dot.style.top = my + 'px'; });
+document.addEventListener('mousedown', () => document.body.classList.add('cursor-click'));
+document.addEventListener('mouseup', () => document.body.classList.remove('cursor-click'));
+
+(function animRing() {
+  rx += (mx - rx) * 0.1;
+  ry += (my - ry) * 0.1;
+  ring.style.left = rx + 'px';
+  ring.style.top = ry + 'px';
+  requestAnimationFrame(animRing);
+})();
+
+const hoverTargets = 'a, button, .checklist li, .for-you-card, .service-row, .process-step, details summary, .marquee-item';
+document.querySelectorAll(hoverTargets).forEach(el => {
+  el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+  el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+});
+
+/* ── MAGNETIC BUTTONS ── */
+document.querySelectorAll('.btn-solid, .btn-light, .nav-book').forEach(btn => {
+  btn.addEventListener('mousemove', e => {
+    const r = btn.getBoundingClientRect();
+    const dx = (e.clientX - (r.left + r.width / 2)) * 0.28;
+    const dy = (e.clientY - (r.top + r.height / 2)) * 0.28;
+    btn.style.transform = `translate(${dx}px,${dy}px)`;
+  });
+  btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+});
+
+/* ── REVEAL ON SCROLL ── */
+const revealAll = document.querySelectorAll('.reveal, .reveal-up, .reveal-scale, .reveal-left, .reveal-right');
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('up'); revealObs.unobserve(e.target); }
+  });
+}, { threshold: 0.07, rootMargin: '0px 0px -48px 0px' });
+revealAll.forEach(el => revealObs.observe(el));
+
+/* ── COUNTER ANIMATION ── */
+function animCount(el) {
+  const target = parseFloat(el.dataset.target);
+  const suffix = el.dataset.suffix || '';
+  const isFloat = target !== Math.floor(target);
+  const dur = 1800;
+  const start = performance.now();
+  (function step(now) {
+    const p = Math.min((now - start) / dur, 1);
+    const ease = 1 - Math.pow(1 - p, 4);
+    const val = ease * target;
+    el.textContent = (isFloat ? val.toFixed(1) : Math.round(val)) + suffix;
+    if (p < 1) requestAnimationFrame(step);
+  })(start);
+}
+const countObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { animCount(e.target); countObs.unobserve(e.target); } });
+}, { threshold: 0.5 });
+document.querySelectorAll('.count-num').forEach(el => countObs.observe(el));
+
+/* ── PARALLAX (ghost text layers & hero elements) ── */
+const parallaxItems = [];
+document.querySelectorAll('[data-parallax]').forEach(el => {
+  parallaxItems.push({ el, speed: parseFloat(el.dataset.parallax) });
+});
+
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    requestAnimationFrame(() => {
+      const sy = window.scrollY;
+      parallaxItems.forEach(({ el, speed }) => {
+        el.style.transform = `translateY(${sy * speed}px)`;
+      });
+      ticking = false;
+    });
+    ticking = true;
+  }
+}, { passive: true });
+
+/* ── SMOOTH SCROLL ── */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     const t = document.querySelector(a.getAttribute('href'));
@@ -1101,14 +1332,331 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
-// Form
+/* ── CHECKLIST STAGGER ── */
+document.querySelectorAll('.checklist li').forEach((li, i) => {
+  li.style.transitionDelay = (i * 0.06) + 's';
+});
+
+/* ── FORM ── */
 document.getElementById('submitBtn').addEventListener('click', function() {
   const name = document.querySelector('.form-input').value.trim();
-  if (!name) { this.textContent = 'Please enter your name first'; this.style.background = '#888'; setTimeout(() => { this.textContent = 'Send Message'; this.style.background = ''; }, 2500); return; }
+  if (!name) {
+    this.textContent = 'Please enter your name first';
+    this.style.background = '#888';
+    setTimeout(() => { this.textContent = 'Send Message'; this.style.background = ''; }, 2500);
+    return;
+  }
   this.textContent = '✓ Sent — Yuliia will be in touch within 24 hours';
   this.style.background = '#2a6b4a';
   this.disabled = true;
 });
+
+/* ── SERVICE ROW STAGGER ── */
+document.querySelectorAll('.service-row').forEach((row, i) => {
+  row.classList.add('reveal');
+  row.style.transitionDelay = (i * 0.08) + 's';
+  revealObs.observe(row);
+});
+
+/* ── TESTIMONIAL ALTERNATE REVEAL ── */
+document.querySelectorAll('.testimonials-grid > div').forEach((card, i) => {
+  card.classList.add(i % 2 === 0 ? 'reveal-left' : 'reveal-right');
+  card.style.transitionDelay = (i * 0.12) + 's';
+  revealObs.observe(card);
+});
+
+/* ══════════════════════════════════════
+   RADAR INTERACTIVITY
+══════════════════════════════════════ */
+
+/* Shared tooltip element */
+const radarTip = document.createElement('div');
+radarTip.className = 'radar-tip';
+radarTip.innerHTML = '<div class="radar-tip-dot"></div><span class="radar-tip-label"></span><span class="radar-tip-score"></span>';
+document.body.appendChild(radarTip);
+
+function showTip(e, label, score) {
+  radarTip.querySelector('.radar-tip-label').textContent = label;
+  radarTip.querySelector('.radar-tip-score').textContent = score;
+  radarTip.classList.add('show');
+  moveTip(e);
+}
+function moveTip(e) {
+  const x = e.clientX, y = e.clientY;
+  const tw = radarTip.offsetWidth;
+  radarTip.style.left = (x + 14 + tw > window.innerWidth ? x - tw - 14 : x + 14) + 'px';
+  radarTip.style.top  = (y - 36) + 'px';
+}
+function hideTip() { radarTip.classList.remove('show'); }
+
+/* ── HERO RADAR: data for each of the 8 dots ── */
+const heroEqMap = [
+  { label: 'Self-Awareness',    score: '87 / 100' },
+  { label: 'Self-Expression',   score: '79 / 100' },
+  { label: 'Interpersonal',     score: '74 / 100' },
+  { label: 'Decision Making',   score: '82 / 100' },
+  { label: 'Stress Management', score: '61 / 100' },
+  { label: 'Wellbeing',         score: '71 / 100' },
+  { label: 'Resilience',        score: '78 / 100' },
+  { label: 'Adaptability',      score: '83 / 100' },
+];
+
+const scoreCards  = Array.from(document.querySelectorAll('.score-card'));
+const heroDots    = Array.from(document.querySelectorAll('.hero-r-dot'));
+
+function highlightDot(dot, on) {
+  if (on) { dot.setAttribute('r', '5'); dot.style.filter = 'drop-shadow(0 0 7px rgba(74,63,159,0.85))'; }
+  else     { dot.setAttribute('r', '3'); dot.style.filter = ''; }
+}
+
+heroDots.forEach((dot, i) => {
+  const d = heroEqMap[i];
+  dot.addEventListener('mouseenter', e => {
+    showTip(e, d.label, d.score);
+    highlightDot(dot, true);
+    if (scoreCards[i]) scoreCards[i].classList.add('eq-active');
+  });
+  dot.addEventListener('mousemove', moveTip);
+  dot.addEventListener('mouseleave', () => {
+    hideTip();
+    highlightDot(dot, false);
+    if (scoreCards[i]) scoreCards[i].classList.remove('eq-active');
+  });
+});
+
+scoreCards.forEach((card, i) => {
+  const dot = heroDots[i];
+  if (!dot) return;
+  card.addEventListener('mouseenter', () => highlightDot(dot, true));
+  card.addEventListener('mouseleave', () => highlightDot(dot, false));
+});
+
+/* ── DATA RADAR: 11 EQ-i 2.0 competencies ── */
+const dataEqMap = [
+  { label: 'Self-Regard',                score: 'Self-Perception' },
+  { label: 'Emotional Self-Awareness',   score: 'Self-Perception' },
+  { label: 'Emotional Expression',       score: 'Self-Expression' },
+  { label: 'Assertiveness',              score: 'Self-Expression' },
+  { label: 'Independence',               score: 'Self-Expression' },
+  { label: 'Empathy',                    score: 'Interpersonal'   },
+  { label: 'Social Responsibility',      score: 'Interpersonal'   },
+  { label: 'Interpersonal Relationships',score: 'Interpersonal'   },
+  { label: 'Problem Solving',            score: 'Decision Making' },
+  { label: 'Reality Testing',            score: 'Decision Making' },
+  { label: 'Flexibility',                score: 'Decision Making' },
+];
+
+const dataRDots = Array.from(document.querySelectorAll('.data-r-dot'));
+
+dataRDots.forEach((dot, i) => {
+  const d = dataEqMap[i] || { label: 'EQ Competency', score: 'EQ-i 2.0' };
+  dot.addEventListener('mouseenter', e => {
+    showTip(e, d.label, d.score);
+    dot.setAttribute('r', '5.5');
+    dot.style.filter = 'drop-shadow(0 0 8px rgba(74,63,159,0.9))';
+  });
+  dot.addEventListener('mousemove', moveTip);
+  dot.addEventListener('mouseleave', () => {
+    hideTip();
+    dot.setAttribute('r', '3');
+    dot.style.filter = '';
+  });
+});
+
+/* Add animated pulse rings to data radar dots after they appear */
+function addPulseRings(svgEl, dots, points) {
+  dots.forEach((dot, i) => {
+    const cx = dot.getAttribute('cx'), cy = dot.getAttribute('cy');
+    const ring = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    ring.setAttribute('cx', cx);
+    ring.setAttribute('cy', cy);
+    ring.setAttribute('r', '3');
+    ring.setAttribute('fill', 'none');
+    ring.setAttribute('stroke', '#4a3f9f');
+    ring.setAttribute('stroke-width', '1');
+    ring.setAttribute('opacity', '0');
+    ring.style.animationDelay = (i * 0.22) + 's';
+    ring.className.baseVal = 'dot-pulse-ring';
+    svgEl.appendChild(ring);
+  });
+}
+
+/* ══════════════════════════════════════
+   CHART & RADAR ANIMATIONS
+══════════════════════════════════════ */
+
+/* Interpolate polygon points from a collapsed center to final shape */
+function morphPolygon(el, finalPts, cx, cy, duration, delay) {
+  const startPts = finalPts.map(() => [cx, cy]);
+  let t0 = null;
+  setTimeout(() => {
+    requestAnimationFrame(function frame(ts) {
+      if (!t0) t0 = ts;
+      const p = Math.min((ts - t0) / duration, 1);
+      const ease = 1 - Math.pow(1 - p, 4);
+      const pts = finalPts.map((fp, i) => [
+        startPts[i][0] + (fp[0] - startPts[i][0]) * ease,
+        startPts[i][1] + (fp[1] - startPts[i][1]) * ease
+      ]);
+      el.setAttribute('points', pts.map(p => p.join(',')).join(' '));
+      if (p < 1) requestAnimationFrame(frame);
+    });
+  }, delay);
+}
+
+/* Stagger a NodeList into view with class "on" */
+function staggerOn(els, startDelay, step) {
+  els.forEach((el, i) => {
+    setTimeout(() => el.classList.add('on'), startDelay + i * step);
+  });
+}
+
+/* ── HERO RADAR (fires on page load, since hero is above fold) ── */
+const heroRadarPoly = document.getElementById('hero-radar-poly');
+const heroFinalPts  = [[100,28],[152,52],[170,108],[148,160],[100,174],[52,160],[30,108],[48,52]];
+morphPolygon(heroRadarPoly, heroFinalPts, 100, 100, 1400, 1200);
+staggerOn(document.querySelectorAll('.hero-r-dot'), 1700, 110);
+/* Add pulse rings + start live animation once settled */
+setTimeout(() => {
+  heroRadarPoly.classList.add('settled');
+  const miniSvg = heroRadarPoly.closest('svg');
+  addPulseRings(miniSvg, heroDots, heroFinalPts);
+  _morphLoop(heroRadarPoly, heroDots, 100, 100, 80,
+    [-Math.PI/2, -Math.PI/4, 0, Math.PI/4, Math.PI/2, 3*Math.PI/4, Math.PI, -3*Math.PI/4],
+    [[.90,.88,.88,.96,.93,.96,.88,.88],[.76,.96,.65,.90,.82,.58,.95,.72],[.94,.68,.97,.70,.90,.86,.62,.94],[.82,.74,.78,.94,.70,.90,.82,.68]]
+  );
+  _radarVisuals(miniSvg, document.querySelector('.hero-right'));
+}, 1200 + 1400 + 200);
+
+/* ── DATA SECTION: line chart + radar (fires on scroll) ── */
+const dataSection   = document.getElementById('data');
+const dataLinePoly  = document.getElementById('data-line-poly');
+const dataAreaPoly  = document.getElementById('data-area-poly');
+const dataRadarPoly = document.getElementById('data-radar-poly');
+const dataFinalPts  = [[140,44],[195,58],[230,100],[235,155],[210,210],[165,238],[115,238],[68,208],[46,155],[52,100],[84,58]];
+
+let dataAnimated = false;
+const dataObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting && !dataAnimated) {
+      dataAnimated = true;
+
+      /* Line chart: set real dash length then animate to 0 */
+      const len = dataLinePoly.getTotalLength();
+      dataLinePoly.style.strokeDasharray  = len;
+      dataLinePoly.style.strokeDashoffset = len;
+      /* Force reflow so the transition fires */
+      dataLinePoly.getBoundingClientRect();
+      dataLinePoly.style.transition = 'stroke-dashoffset 2s cubic-bezier(0.16,1,0.3,1) 0.1s';
+      dataLinePoly.style.strokeDashoffset = 0;
+
+      /* Area fill: clip-path slides in from left */
+      dataAreaPoly.style.clipPath = 'inset(0 0% 0 0)';
+
+      /* Line chart dots stagger in */
+      staggerOn(document.querySelectorAll('.data-dot'), 300, 280);
+
+      /* Radar polygon morphs open */
+      morphPolygon(dataRadarPoly, dataFinalPts, 140, 140, 1600, 500);
+
+      /* Radar dots stagger in */
+      staggerOn(document.querySelectorAll('.data-r-dot'), 900, 80);
+
+      /* Pulse rings + live animation after morph settles */
+      setTimeout(() => {
+        dataRadarPoly.classList.add('settled');
+        const dataSvg = dataRadarPoly.closest('svg');
+        addPulseRings(dataSvg, dataRDots, dataFinalPts);
+        const dAngles = Array.from({length:11}, (_,i) => 2*Math.PI*i/11 - Math.PI/2);
+        _morphLoop(dataRadarPoly, dataRDots, 140, 140, 110, dAngles,
+          [[.87,.90,.85,.96,.86,.90,.90,.76,.82,.52,.40],
+           [.72,.80,.97,.70,.97,.76,.78,.94,.64,.74,.58],
+           [.96,.66,.88,.94,.70,.97,.64,.80,.92,.58,.76],
+           [.84,.92,.72,.82,.88,.70,.94,.68,.76,.82,.62]]
+        );
+        _radarVisuals(dataSvg, document.querySelector('.data-right'));
+      }, 500 + 1600 + 200);
+
+      dataObs.disconnect();
+    }
+  });
+}, { threshold: 0.25 });
+dataObs.observe(dataSection);
+
+/* ══════════════════════════════════════
+   LIVE RADAR ENGINE
+══════════════════════════════════════ */
+
+function _lerpArr(a, b, t) { return a.map((v, i) => v + (b[i] - v) * t); }
+function _ease3(t) { return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2; }
+
+function _radarPts(cx, cy, maxR, angles, w) {
+  return angles.map((a, i) => [
+    cx + maxR * w[i] * Math.cos(a),
+    cy + maxR * w[i] * Math.sin(a)
+  ]);
+}
+
+function _applyRadar(poly, dots, svg, pts) {
+  poly.setAttribute('points', pts.map(p => p.map(v => v.toFixed(2)).join(',')).join(' '));
+  dots.forEach((d, i) => {
+    if (!pts[i]) return;
+    d.setAttribute('cx', pts[i][0].toFixed(2));
+    d.setAttribute('cy', pts[i][1].toFixed(2));
+  });
+  svg.querySelectorAll('.dot-pulse-ring').forEach((r, i) => {
+    if (!pts[i]) return;
+    r.setAttribute('cx', pts[i][0].toFixed(2));
+    r.setAttribute('cy', pts[i][1].toFixed(2));
+  });
+}
+
+function _morphLoop(poly, dots, cx, cy, maxR, angles, profs) {
+  const svg = poly.closest('svg');
+  let fi = 0, ti = 1, phase = 'hold', t0 = null;
+  const HOLD = 3000, TRANS = 1800;
+  (function frame(ts) {
+    if (!t0) t0 = ts;
+    const el = ts - t0;
+    let w;
+    if (phase === 'hold') {
+      w = profs[fi];
+      if (el >= HOLD) { phase = 'trans'; t0 = ts; ti = (fi + 1) % profs.length; }
+    } else {
+      const p = Math.min(el / TRANS, 1);
+      w = _lerpArr(profs[fi], profs[ti], _ease3(p));
+      if (p >= 1) { fi = ti; phase = 'hold'; t0 = ts; }
+    }
+    _applyRadar(poly, dots, svg, _radarPts(cx, cy, maxR, angles, w));
+    requestAnimationFrame(frame);
+  })();
+}
+
+function _radarVisuals(svgEl, container) {
+  if (!svgEl || !container) return;
+  let tx = 0, ty = 0, lx = 0, ly = 0;
+  svgEl.style.transformOrigin = 'center';
+  svgEl.style.willChange = 'transform';
+
+  container.addEventListener('mousemove', e => {
+    const r = container.getBoundingClientRect();
+    tx = ((e.clientY - r.top  - r.height / 2) / (r.height / 2)) * -18;
+    ty = ((e.clientX - r.left - r.width  / 2) / (r.width  / 2)) *  14;
+  });
+  container.addEventListener('mouseleave', () => { tx = 0; ty = 0; });
+
+  (function frame(ts) {
+    lx += (tx - lx) * 0.06;
+    ly += (ty - ly) * 0.06;
+    const t  = ts * 0.001;
+    const fy = Math.sin(t * 0.52) * 11;          /* float up/down */
+    const sc = 1 + Math.sin(t * 0.35) * 0.055;  /* zoom in/out  */
+    svgEl.style.transform =
+      `perspective(540px) rotateX(${lx.toFixed(3)}deg) rotateY(${ly.toFixed(3)}deg) ` +
+      `translateY(${fy.toFixed(2)}px) scale(${sc.toFixed(4)})`;
+    requestAnimationFrame(frame);
+  })();
+}
 </script>
 </body>
 </html>
